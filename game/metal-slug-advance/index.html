@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Metal Slug Advance | GBA Emulator | Cleone.ID</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../../assets/icon/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+        <link rel="apple-touch-icon" href="../../assets/icon/apple-touch-icon.png" />
+        <link rel="manifest" href="../../assets/icon/manifest.json" />  
+        <meta name="theme-color" content="#000"/>
+        <meta name="description" content="Metal Slug Advance | GBA Emulator | Cleone.ID">
+        <meta name="keywords" content="Metal Slug Advance, GBA Emulator, Cleone.ID">
+        <style>
+            body, html {
+                height: 100%;
+                background-color: black;
+                color: white;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            #display {
+                width: 100%;
+                height: 100%;
+            }
+            
+            #game {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="display">
+            <div id="game"></div>
+        </div>
+        
+        <script>
+            if ("serviceWorker" in navigator) {
+                const req = navigator.serviceWorker.register("sw.js");
+                console.log(req);
+            };
+            
+            // Set up the EmulatorJS configuration for GBA
+            window.EJS_player = "#game";
+            window.EJS_gameName = "Metal Slug Advance";
+            window.EJS_biosUrl = "";
+            window.EJS_gameUrl = "1840 - Metal Slug Advance (E)(TRSI).gba";
+            window.EJS_core = "gba";
+            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            window.EJS_startOnLoaded = true;
+            
+            // Load the EmulatorJS script
+            const script = document.createElement("script");
+            script.src = window.EJS_pathtodata + "loader.js";
+            document.body.appendChild(script);
+        </script>
+         <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TFK9146KD"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-9TFK9146KD');
+        </script>
+    </body>
+</html>
