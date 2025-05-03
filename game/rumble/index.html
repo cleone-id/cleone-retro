@@ -41,25 +41,37 @@
         </div>
         
         <script>
+            // Remove the ServiceWorker registration that's causing 404 errors
+            // We'll only attempt to register if the sw.js file exists
             if ("serviceWorker" in navigator) {
-                const req = navigator.serviceWorker.register("sw.js");
-                console.log(req);
-            };
+                fetch('sw.js')
+                    .then(response => {
+                        if (response.ok) {
+                            return navigator.serviceWorker.register("sw.js");
+                        } else {
+                            console.log("ServiceWorker file not found, skipping registration");
+                        }
+                    })
+                    .catch(error => {
+                        console.log("ServiceWorker registration skipped:", error);
+                    });
+            }
             
-            // Set up the EmulatorJS configuration exactly like the demo site
+            // Set up the EmulatorJS configuration
             window.EJS_player = "#game";
             window.EJS_gameName = "Nascar Rumble";
-            window.EJS_gameUrl = "NASCAR-Rumble.bin";
+            window.EJS_gameUrl = "NASCAR-Rumble.bin"; // Make sure this path is correct
             window.EJS_core = "psx";
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             window.EJS_startOnLoaded = true;
             window.EJS_loadStateOnStart = true;
             window.EJS_saveStateOnExit = true;
             window.EJS_threads = true;
-            window.EJS_cheats = false;
-            window.EJS_noAutoCloseWarnings = false;
             
-            // Important settings for PlayStation emulation
+            // Debug mode to help identify issues
+            window.EJS_DEBUG_XX = true;
+            
+            // Settings specifically for PlayStation emulation
             window.EJS_defaultOptions = {
                 'psx': {
                     'region': 'auto',
@@ -68,7 +80,7 @@
                 }
             };
             
-            // Force fullscreen and handle window resizing properly
+            // Handle fullscreen and resizing
             window.addEventListener('resize', function() {
                 const gameElement = document.getElementById('game');
                 if (gameElement && gameElement.children[0]) {
@@ -77,10 +89,19 @@
                 }
             });
             
+            // Add error handling for script loading
+            function loadEmulatorScript() {
+                const script = document.createElement("script");
+                script.src = window.EJS_pathtodata + "loader.js";
+                script.onerror = function() {
+                    console.error("Failed to load EmulatorJS script. Check the URL:", this.src);
+                    alert("Failed to load the emulator. Please check the console for details.");
+                };
+                document.body.appendChild(script);
+            }
+            
             // Load the EmulatorJS script
-            const script = document.createElement("script");
-            script.src = window.EJS_pathtodata + "loader.js";
-            document.body.appendChild(script);
+            loadEmulatorScript();
         </script>
          <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TFK9146KD"></script>
