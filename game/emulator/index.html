@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cleone | Emulator JS</title>
-        <link rel = icon href = docs/favicon.ico sizes = "16x16 32x32 48x48 64x64" type = image/vnd.microsoft.icon>
-        <meta name = viewport content = "width = device-width, initial-scale = 1">
+        <title>Cleone | EmulatorJS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../../assets/icon/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon">
+        <link rel="apple-touch-icon" href="../../assets/icon/apple-touch-icon.png" />
+        <link rel="manifest" href="../../assets/icon/manifest.json" />  
+        <meta name="theme-color" content="#000"/>
+        <meta name="description" content="Cleone | Emulator JS">
+        <meta name="keywords" content="Cleone, Emulator JS, Cleone.ID">
         <style>
              body, html {
                 height: 100%;
@@ -251,6 +256,15 @@
             }
             box.ondragover = () => box.setAttribute("drag", true);
             box.ondragleave = () => box.removeAttribute("drag");
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TFK9146KD"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-9TFK9146KD');
         </script>
     </body>
 </html>
